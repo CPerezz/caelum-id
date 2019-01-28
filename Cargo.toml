@@ -1,7 +1,7 @@
 [package]
 name = "identity"
 version = "0.1.0"
-authors = ["CPerezz <carlos@caelumlabs.com>"]
+authors = ["CPerezz <c.perezbaro@gmail.com>"]
 edition = "2018"
 documentation = "https://github.com/CPerezz/caelum-id"
 homepage = "https://github.com/CPerezz/caelum-id"
