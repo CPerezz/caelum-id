@@ -6,7 +6,7 @@ edition = "2018"
 documentation = "https://github.com/CPerezz/caelum-id"
 homepage = "https://github.com/CPerezz/caelum-id"
 repository = "https://github.com/CPerezz/caelum-id"
-readme = ".README.md"
+readme = "README.md"
 license = "MIT"
 
 [dependencies]
