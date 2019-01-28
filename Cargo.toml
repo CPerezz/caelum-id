@@ -10,3 +10,12 @@ rustc-hex = "2.0.1"
 ethabi = "6.1.0"
 tiny-keccak = "1.4.2"
 ethereum-types = "0.4.0"
+
+[package]
+
+documentation = "https://github.com/CPerezz/caelum-id"
+homepage = "https://github.com/CPerezz/caelum-id"
+repository = "https://github.com/CPerezz/caelum-id"
+
+readme = ".README.md"
+license = "MIT"
