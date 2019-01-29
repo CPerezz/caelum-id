@@ -11,7 +11,7 @@ license = "MIT"
 description = "Oficial CaelumLabs Identity Rust API/Core implementation"
  
 [dependencies]
-web3 = { git = "https://github.com/tomusdrw/rust-web3" }
+web3 = "0.5.1"
 rustc-hex = "2.0.1"
 ethabi = "6.1.0"
 tiny-keccak = "1.4.2"
