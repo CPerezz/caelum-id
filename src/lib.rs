@@ -16,7 +16,7 @@ mod deployment_tests {
     fn it_deploys() {
         let _gas_price = web3::types::U256::from("1000000000");
         let _from = web3::types::Address::from("0x00a329c0648769a73afac7f9381e08fb43dbea72");
-        let (loop_hand ,_http) = web3::transports::http::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
+        let (loop_hand ,_http) = web3::transports::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
         utils::wallet::unlock_account(&_from, "", None, &_http);
         let contract = utils::deploy::deploy_identity(&_from, &_gas_price, _http)
         .expect("Failed to deploy indentity, Review the parameters.");
@@ -26,7 +26,7 @@ mod deployment_tests {
     fn it_generates_contract_at_addr() {
         let _gas_price = web3::types::U256::from("1000000000");
         let _from = web3::types::Address::from("0x00a329c0648769a73afac7f9381e08fb43dbea72");
-        let (loop_hand ,_http) = web3::transports::http::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
+        let (loop_hand ,_http) = web3::transports::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
         utils::wallet::unlock_account(&_from, "", None, &_http);
         let deployed_contract = utils::deploy::deploy_identity(&_from, &_gas_price, _http.clone())
         .expect("Failed to deploy indentity, Review the parameters.");
@@ -51,7 +51,7 @@ mod key_tests {
         let _gas_price = web3::types::U256::from("1000000000");
         let _from = web3::types::Address::from("0x00a329c0648769a73afac7f9381e08fb43dbea72");
         let purpose = web3::types::U256::from("1");
-        let (loop_hand ,_http) = web3::transports::http::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
+        let (loop_hand ,_http) = web3::transports::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
         utils::wallet::unlock_account(&_from, "", None, &_http);
         let deployed_contract = utils::deploy::deploy_identity(&_from, &_gas_price, _http.clone())
         .expect("Failed to deploy indentity, Review the parameters.");
@@ -65,7 +65,7 @@ mod key_tests {
     fn it_gets_keys() {
         let _gas_price = web3::types::U256::from("1000000000");
         let _from = web3::types::Address::from("0x00a329c0648769a73afac7f9381e08fb43dbea72");
-        let (loop_hand ,_http) = web3::transports::http::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
+        let (loop_hand ,_http) = web3::transports::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
         utils::wallet::unlock_account(&_from, "", None, &_http);
         let deployed_contract = utils::deploy::deploy_identity(&_from, &_gas_price, _http.clone())
         .expect("Failed to deploy indentity, Review the parameters.");
@@ -77,7 +77,7 @@ mod key_tests {
     fn it_adds_key() {
         let _gas_price = web3::types::U256::from("1000000000");
         let _from = web3::types::Address::from("0x00a329c0648769a73afac7f9381e08fb43dbea72");
-        let (loop_hand ,_http) = web3::transports::http::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
+        let (loop_hand ,_http) = web3::transports::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
         utils::wallet::unlock_account(&_from, "", None, &_http);
         let deployed_contract = utils::deploy::deploy_identity(&_from, &_gas_price, _http.clone())
         .expect("Failed to deploy indentity, Review the parameters.");
@@ -105,7 +105,7 @@ mod claim_tests {
     fn it_adds_claims() {
         let _gas_price = web3::types::U256::from("1000000000");
         let _from = web3::types::Address::from("0x00a329c0648769a73afac7f9381e08fb43dbea72");
-        let (loop_hand ,_http) = web3::transports::http::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
+        let (loop_hand ,_http) = web3::transports::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
         utils::wallet::unlock_account(&_from, "", None, &_http);
         let deployed_contract = utils::deploy::deploy_identity(&_from, &_gas_price, _http.clone())
         .expect("Failed to deploy indentity, Review the parameters.");

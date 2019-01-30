@@ -1,5 +1,5 @@
 use web3::types::{Address, U256, H256};
-use web3::transports::http::Http;
+use web3::transports::Http;
 use web3::futures::Future;
 use web3;
 

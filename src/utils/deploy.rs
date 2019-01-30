@@ -1,11 +1,11 @@
 use web3::contract::{Contract, Options};
 use web3::types::{Address, U256};
-use web3::transports::http::Http;
+use web3::transports::Http;
 use rustc_hex::FromHex;
 use web3::futures::Future;
 use web3;
 
-pub fn deploy_identity(from: &Address, _gas_price: &U256, http: Http ) -> Option<web3::contract::Contract<web3::transports::http::Http>> {
+pub fn deploy_identity(from: &Address, _gas_price: &U256, http: Http ) -> Option<web3::contract::Contract<web3::transports::Http>> {
     //Charge paths to ABI and Bytecode from .env
     
     //Generating the web3 object to be able to use the contract.
@@ -32,7 +32,7 @@ pub fn deploy_identity(from: &Address, _gas_price: &U256, http: Http ) -> Option
         Some(contract)
 }
 
-pub fn gen_identity_at_address(_address: &Address, http: Http) -> web3::contract::Contract<web3::transports::http::Http> {
+pub fn gen_identity_at_address(_address: &Address, http: Http) -> web3::contract::Contract<web3::transports::Http> {
     let web3 = web3::Web3::new(http.clone());
     let contract = Contract::from_json(
         web3.eth(),
