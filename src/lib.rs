@@ -18,7 +18,7 @@ mod deployment_tests {
         let _from = web3::types::Address::from("0x00a329c0648769a73afac7f9381e08fb43dbea72");
         let (loop_hand ,_http) = web3::transports::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
         utils::wallet::unlock_account(&_from, "", None, &_http);
-        let contract = utils::deploy::deploy_identity(&_from, &_gas_price, _http)
+        let contract = utils::deploy::deploy_identity(&_from, &_from, &_gas_price, _http)
         .expect("Failed to deploy indentity, Review the parameters.");
         assert!(contract.address().to_string() != web3::types::Address::from("0000000000000000000000000000000000000000").to_string());
     }
@@ -28,7 +28,7 @@ mod deployment_tests {
         let _from = web3::types::Address::from("0x00a329c0648769a73afac7f9381e08fb43dbea72");
         let (loop_hand ,_http) = web3::transports::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
         utils::wallet::unlock_account(&_from, "", None, &_http);
-        let deployed_contract = utils::deploy::deploy_identity(&_from, &_gas_price, _http.clone())
+        let deployed_contract = utils::deploy::deploy_identity(&_from, &_from, &_gas_price, _http.clone())
         .expect("Failed to deploy indentity, Review the parameters.");
         let instanciated_contract = utils::deploy::gen_identity_at_address(&web3::types::Address::from(utils::tools::string_to_static_str(deployed_contract.address().hex())), _http.clone());
         assert_eq!(deployed_contract.address(), instanciated_contract.address());
@@ -53,7 +53,7 @@ mod key_tests {
         let purpose = web3::types::U256::from("1");
         let (loop_hand ,_http) = web3::transports::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
         utils::wallet::unlock_account(&_from, "", None, &_http);
-        let deployed_contract = utils::deploy::deploy_identity(&_from, &_gas_price, _http.clone())
+        let deployed_contract = utils::deploy::deploy_identity(&_from, &_from, &_gas_price, _http.clone())
         .expect("Failed to deploy indentity, Review the parameters.");
         let keys: Vec<H256> = keys::get_keys_by_purpose(&_from, &purpose, &deployed_contract).expect("Error on getting the keys");
         let keccaked_key = utils::tools::keccak256(&H256::from(Address::from(_from)));
@@ -67,7 +67,7 @@ mod key_tests {
         let _from = web3::types::Address::from("0x00a329c0648769a73afac7f9381e08fb43dbea72");
         let (loop_hand ,_http) = web3::transports::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
         utils::wallet::unlock_account(&_from, "", None, &_http);
-        let deployed_contract = utils::deploy::deploy_identity(&_from, &_gas_price, _http.clone())
+        let deployed_contract = utils::deploy::deploy_identity(&_from, &_from, &_gas_price, _http.clone())
         .expect("Failed to deploy indentity, Review the parameters.");
         let _key: models::data_structs::Key = keys::get_key(&_from, H256::from([102, 98, 193, 58, 124, 52, 75, 143, 140, 12, 61, 118, 106, 139, 108, 166, 10, 18, 162, 92, 150, 32, 132, 83, 185, 187, 22, 61, 108, 142, 203, 86]), &deployed_contract).expect("Error getting the key");
         assert_eq!(_key.key, H256::from([102, 98, 193, 58, 124, 52, 75, 143, 140, 12, 61, 118, 106, 139, 108, 166, 10, 18, 162, 92, 150, 32, 132, 83, 185, 187, 22, 61, 108, 142, 203, 86]));
@@ -77,9 +77,9 @@ mod key_tests {
     fn it_adds_key() {
         let _gas_price = web3::types::U256::from("1000000000");
         let _from = web3::types::Address::from("0x00a329c0648769a73afac7f9381e08fb43dbea72");
-        let (loop_hand ,_http) = web3::transports::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
+        let (_ ,_http) = web3::transports::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
         utils::wallet::unlock_account(&_from, "", None, &_http);
-        let deployed_contract = utils::deploy::deploy_identity(&_from, &_gas_price, _http.clone())
+        let deployed_contract = utils::deploy::deploy_identity(&_from, &_from, &_gas_price, _http.clone())
         .expect("Failed to deploy indentity, Review the parameters.");
         let _key = models::data_structs::Key {
             key: H256::from([101, 98, 193, 58, 124, 52, 75, 143, 140, 12, 61, 118, 106, 139, 108, 166, 10, 18, 162, 92, 150, 32, 132, 83, 185, 187, 22, 61, 108, 142, 203, 86]),
@@ -96,10 +96,7 @@ mod claim_tests {
     use crate::utils;
     use crate::models;
     use crate::controllers::{claims, keys};
-    use web3::types::Address;
-    use ethereum_types::H256;
-    use ethereum_types::U256;
-    use ethereum_types::H160;
+    use ethereum_types::{H256, U256, Address};
 
     #[test]
     fn it_adds_claims() {
@@ -107,7 +104,7 @@ mod claim_tests {
         let _from = web3::types::Address::from("0x00a329c0648769a73afac7f9381e08fb43dbea72");
         let (loop_hand ,_http) = web3::transports::Http::new("http://localhost:8545").expect("Not connected to an RPC Client."); 
         utils::wallet::unlock_account(&_from, "", None, &_http);
-        let deployed_contract = utils::deploy::deploy_identity(&_from, &_gas_price, _http.clone())
+        let deployed_contract = utils::deploy::deploy_identity(&_from, &_from, &_gas_price, _http.clone())
         .expect("Failed to deploy indentity, Review the parameters.");
 
         let _key = models::data_structs::Key {
@@ -116,17 +113,17 @@ mod claim_tests {
             key_type: U256::from("1")
         };
 
-        let added = keys::add_key(_key.clone(), &_gas_price, &_from, &deployed_contract);
+        keys::add_key(_key.clone(), &_gas_price, &_from, &deployed_contract);
         //assert_eq!(added.unwrap(), true);
         utils::wallet::unlock_account(&_from, "", None, &_http);
         let _claim = models::data_structs::Claim {
-            id: H256::new(),
+            id: H256::zero(),
             topic: U256::from("50"),
             scheme: U256::from("1"),
-            issuer: H160::new(),
-            signature: H256::new(),
-            data: H256::new(),
-            uri: H256::new()
+            issuer: Address::zero(),
+            signature: H256::zero(),
+            data: H256::zero(),
+            uri: H256::zero()
         }; 
         match claims::add_claim(_claim, &_gas_price, &_from, &deployed_contract) {
             None => panic!("Claim couldn't be added."),
