@@ -6,7 +6,7 @@ import "./ERC735.sol";
 
 /** @title Self-sovereign identity. */
 contract Identitat is ERC725, ERC735 {
-
+ 
     bytes32 public version = "0.2";
 
     // Mapping of addres.
@@ -27,13 +27,13 @@ contract Identitat is ERC725, ERC735 {
 
     /**
      * @dev Constructor that create a MANAGEMENT_KEY to the contract deployer.
+     * @param _owner the future owner of the contract, no the deployer itself.
      */
-    constructor() public {
-        bytes32 key = keccak256(abi.encodePacked(msg.sender));
+    constructor(address _owner) public {
+        bytes32 key = keccak256(abi.encodePacked(_owner));
         keysStruct[key] = Key({
             purpose: 1,
             keyType: 1,
-            //key: msg.sender
             key: key
         });
         keysByPurpose[1].push(key);
