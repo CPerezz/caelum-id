@@ -16,7 +16,7 @@ pub fn deploy_identity(owner: &Address, from: &Address, _gas_price: &U256, http:
     //Deploying a contract
     let contract = Contract::deploy(web3.eth(), include_bytes!("../compiled_sc/Identitat.abi"))
         .unwrap()
-        .confirmations(1)
+        .confirmations(0)
         .options(Options::with(|opt| {
             opt.gas = Some(7_000_000.into());
             opt.gas_price = Some(*_gas_price);
