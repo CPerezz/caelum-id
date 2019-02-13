@@ -8,7 +8,7 @@ pub mod utils;
 pub mod controllers;
 pub mod models;
 
-
+/*
 #[cfg(test)]
 mod deployment_tests {
     use crate::utils;
@@ -40,9 +40,7 @@ mod key_tests {
     use crate::utils;
     use crate::models;
     use crate::controllers::keys;
-    use ethereum_types::H256;
-    use ethereum_types::U256;
-    use web3::types::Address;
+    use web3::types::{H256, Address, U256};
     use crate::utils::tools;
 
     #[test]
@@ -131,3 +129,4 @@ mod claim_tests {
         };
     }
 }
+*/

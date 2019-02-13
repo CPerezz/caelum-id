@@ -1,5 +1,4 @@
-use web3::types::{Address, U256};
-use ethereum_types::H256;
+use web3::types::{Address, U256, H256};
 
 #[derive(Debug, Clone)]
 pub struct Key {

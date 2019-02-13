@@ -1,6 +1,5 @@
 use crate::models::data_structs::Key;
-use web3::types::{Address, U256};
-use ethereum_types::H256;
+use web3::types::{Address, U256, H256};
 use web3::contract::Options;
 use web3::futures::Future;
 
