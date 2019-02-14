@@ -1,4 +1,4 @@
-use tiny_keccak::Keccak;
+/*use tiny_keccak::Keccak;
 use ethereum_types::H256;
 /*
 *As of Rust version 1.26, it is possible to convert a String
@@ -19,4 +19,4 @@ pub fn keccak256(_val: &[u8]) -> H256 {
     sha3.finalize(&mut res);
     H256::from(res)
 }
-
+*/

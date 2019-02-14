@@ -1,7 +1,6 @@
 extern crate web3;
 extern crate rustc_hex;
 extern crate tiny_keccak;
-extern crate ethereum_types;
 
 
 pub mod utils;
