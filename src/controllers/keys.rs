@@ -10,16 +10,11 @@ use web3::futures::Future;
  * @gas_price U256 Ammount og ethers to pay gor each Gwei
  * @return Key data structure that has been added and the tx_hash.
  */
-pub fn add_key(_key: Key, _gas_price: &U256, from: &Address, contract: &web3::contract::Contract<web3::transports::Http>) -> Option<(Key,H256)> {
-    let tx_hash: H256 = contract.call(&"addKey", (_key.key, _key.purpose, _key.key_type), *from, Options::with(|opt| {
+pub fn add_key(_key: Key, _gas_price: &U256, from: &Address, contract: &web3::contract::Contract<web3::transports::Http>) -> Result<H256, &'static str> {
+    let _tx_hash: H256 = contract.call(&"addKey", (_key.key, _key.purpose, _key.key_type), *from, Options::with(|opt| {
         opt.gas_price= Some(*_gas_price);
     })).wait().expect("Failed to add key");
-    let key_added = Key {
-        key: _key.key,
-        purpose:  _key.purpose,
-        key_type:  _key.key_type
-    };
-    Some((key_added, tx_hash))
+    Ok(_key.key)
 }
 
 /** 
