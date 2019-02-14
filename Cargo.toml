@@ -1,6 +1,6 @@
 [package]
 name = "caelum-id"
-version = "0.1.6"
+version = "0.1.7"
 authors = ["CPerezz <c.perezbaro@gmail.com>"]
 edition = "2018"
 documentation = "https://github.com/CPerezz/caelum-id"
@@ -15,7 +15,5 @@ web3 = "0.5.1"
 rustc-hex = "2.0.1"
 ethabi = "6.1.0"
 tiny-keccak = "1.4.2"
-ethereum-types = "0.5.2"
-
 
 
